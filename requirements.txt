@@ -2,4 +2,5 @@ pandas
 scipy
 streamlit
 plotly.express
+matplotlib.pyplot
 altair
