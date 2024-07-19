@@ -18,42 +18,45 @@ fig = px.histogram(
     labels={'artists': 'Artist', 'count': 'Frequency of Artists'},
     title='Top Artists'
 )
-fig.show()
-fig = px.scatter(
+st.plotly_chart(fig)
+
+fig_1 = px.scatter(
     top_artists,
     x='artists',
     y='count',
     labels={'artists': 'Artist', 'count': 'Number of Occurrences'},
     title='Frequency of Artists'
 )
-fig.show()
+st.plotly_chart(fig_1)
 
 data_filtered = data[data['popularity'] !=0]
 popular_counts = data_filtered[['popularity', 'track_name']].value_counts().reset_index()
 popular_counts.columns = ['popularity','track_name', 'count']
+
 # Sort and take only the top 20 songs
 popular_songs = popular_counts.head(20)
 
 # Create the histogram
-fig = px.histogram(
+fig_2 = px.histogram(
     popular_songs,
     x='track_name',
     y='count',
     labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
     title='Popularity of a Track'
 )
-fig.update_layout(xaxis_tickangle=-45)
-fig.update_yaxes(range=[0, 50])
-# Display the plot
-fig.show()
+fig_2.update_layout(xaxis_tickangle=-45)
+fig_2.update_yaxes(range=[0, 50])
 
-fig = px.scatter(
+# Display the plot
+st.plotly_chart(fig_2)
+
+fig_3 = px.scatter(
     popular_songs,
     x='track_name',
     y='count',
     labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
     title='Popularity of a Track'
 )
-fig.update_layout(xaxis_tickangle=-45)
-fig.update_yaxes(range=[0, 30])
-fig.show()
+fig_3.update_layout(xaxis_tickangle=-45)
+fig_3.update_yaxes(range=[0, 30])
+st.plotly_chart(fig_3)
