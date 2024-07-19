@@ -3,11 +3,14 @@ import pandas as pd
 import plotly.express as px
 data = pd.read_csv("dataset.csv")
 st.header('SDT Project')
+
 for artist in data['artists']:
     print(artist)
+
 artist_counts = data['artists'].value_counts().reset_index()
 artist_counts.columns = ['artists', 'count']
 top_artists = artist_counts.head(20)
+
 fig = px.histogram(
     top_artists,
     x='artists',
@@ -24,6 +27,7 @@ fig = px.scatter(
     title='Frequency of Artists'
 )
 fig.show()
+
 data_filtered = data[data['popularity'] !=0]
 popular_counts = data_filtered[['popularity', 'track_name']].value_counts().reset_index()
 popular_counts.columns = ['popularity','track_name', 'count']
@@ -42,6 +46,7 @@ fig.update_layout(xaxis_tickangle=-45)
 fig.update_yaxes(range=[0, 50])
 # Display the plot
 fig.show()
+
 fig = px.scatter(
     popular_songs,
     x='track_name',
