@@ -1,1 +1,9 @@
-
+import pandas as pd
+import plotly.express as px
+data = pd.read_csv("dataset.csv")
+data = data.drop(data.index[[0,1]])
+del data['Unnamed: 0']
+print(data.info())
+print(data.head(10))
+print(data.describe())
+print(data.isna().sum())
