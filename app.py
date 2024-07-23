@@ -23,10 +23,11 @@ fig = px.histogram(
     labels={'artists': 'Artist', 'count': 'Frequency of Artists'},
     title='Top Artists'
 )
+
 st.plotly_chart(fig)
 
 fig_1 = px.scatter(
-    top_artists,
+    artist_counts,
     x='artists',
     y='count',
     labels={'artists': 'Artist', 'count': 'Number of Occurrences'},
@@ -61,7 +62,7 @@ fig_2.update_yaxes(range=[0, 50])
 st.plotly_chart(fig_2)
 
 fig_3 = px.scatter(
-    popular_songs,
+    popular_counts,
     x='track_name',
     y='count',
     labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
