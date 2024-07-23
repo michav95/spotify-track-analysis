@@ -42,7 +42,7 @@ popular_songs = popular_counts.head(20)
 
 show_popular_songs = st.checkbox('Show only Popular Songs')
 if show_popular_songs:
-    data = data[data['songs'].isin(popular_songs)]
+    data = data[data['track_name'].isin(popular_songs)]
 
 # Create the histogram
 fig_2 = px.histogram(
