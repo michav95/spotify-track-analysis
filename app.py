@@ -17,7 +17,7 @@ if show_top_artists:
     st.write("Top Artists:", top_artists)
 
 fig = px.histogram(
-    top_artists,
+    artist_counts,
     x='artists',
     y='count',
     labels={'artists': 'Artist', 'count': 'Frequency of Artists'},
@@ -48,7 +48,7 @@ if show_popular_songs:
 
 # Create the histogram
 fig_2 = px.histogram(
-    popular_songs,
+    popular_counts,
     x='track_name',
     y='count',
     labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
