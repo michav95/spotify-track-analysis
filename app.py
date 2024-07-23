@@ -17,7 +17,7 @@ if show_top_artists:
     st.write("Top Artists:", top_artists)
 
 fig = px.histogram(
-    artist_counts,
+    top_artists,
     x='artists',
     y='count',
     labels={'artists': 'Artist', 'count': 'Frequency of Artists'},
@@ -27,7 +27,7 @@ fig = px.histogram(
 st.plotly_chart(fig)
 
 fig_1 = px.scatter(
-    artist_counts,
+    top_artists,
     x='artists',
     y='count',
     labels={'artists': 'Artist', 'count': 'Number of Occurrences'},
@@ -49,7 +49,7 @@ if show_popular_songs:
 
 # Create the histogram
 fig_2 = px.histogram(
-    popular_counts,
+    popular_songs,
     x='track_name',
     y='count',
     labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
@@ -62,7 +62,7 @@ fig_2.update_yaxes(range=[0, 50])
 st.plotly_chart(fig_2)
 
 fig_3 = px.scatter(
-    popular_counts,
+    popular_songs,
     x='track_name',
     y='count',
     labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
