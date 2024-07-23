@@ -14,7 +14,7 @@ top_artists = artist_counts.head(20)
 show_top_artists = st.checkbox('Show only Top 20 artists')
 if show_top_artists:
     data = data[data['artists'].isin(top_artists)]
-    st.wrtie("Top Artists:", top_artists.tolist())
+    st.write("Top Artists:", top_artists.tolist())
 
 fig = px.histogram(
     top_artists,
