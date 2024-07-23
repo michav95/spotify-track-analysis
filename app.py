@@ -11,6 +11,10 @@ artist_counts = data['artists'].value_counts().reset_index()
 artist_counts.columns = ['artists', 'count']
 top_artists = artist_counts.head(20)
 
+show_top_artists = st.checkbox('Show only top_artists')
+if show_top_artists:
+    data = data[data[top_artists]]
+
 fig = px.histogram(
     top_artists,
     x='artists',
@@ -35,6 +39,10 @@ popular_counts.columns = ['popularity','track_name', 'count']
 
 # Sort and take only the top 20 songs
 popular_songs = popular_counts.head(20)
+
+show_popular_songs = st.checkbox('Show only Popular Songs')
+if show_popular_songs:
+    data = data[data[popular_songs]]
 
 # Create the histogram
 fig_2 = px.histogram(
