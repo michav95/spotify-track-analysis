@@ -9,7 +9,7 @@ for artist in data['artists']:
 
 artist_counts = data['artists'].value_counts().reset_index()
 artist_counts.columns = ['artists', 'count']
-top_artists = artist_counts.head(20)['artists'].tolist()
+top_artists = artist_counts.head(20)
 
 show_top_artists = st.checkbox('Show only Top 20 artists')
 if show_top_artists:
