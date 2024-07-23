@@ -9,4 +9,18 @@ To run the application locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone 
+   git clone https://github.com/michav95/spotify-track-analysis
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd spotify-track-analysis
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the Streamlit application:
+   ```bash
+   streamlit run app.py
+   ```
+
