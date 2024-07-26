@@ -94,6 +94,16 @@ fig_5 = px.scatter(
 )
 fig_5.show()
 
-options = ['popularity_by_genre', 'popular_songs']
+options = ['Popularity by Genre Distribution', 'Popularity by Genre Scatter', 'Popular Songs Histogram', 'Popular Songs Scatter']
 selected_options = st.selectbox('Choose an option:', options)
-st.write(f'You selected: {selected option}')
+
+if selected_option == 'Popularity by Genre Distribution':
+    st.plotly_chart(fig_4)
+elif selected_option == 'Popularity by Genre Scatter':
+    st.plotly_chart(fig_5)
+elif selected_option == 'Popular Songs Histogram':
+    st.plotly_chart(fig_2)
+elif selected_option == 'Popular Songs Scatter':
+    st.plotly_chart(fig_3)
+    
+st.write(f"You selected: {selected_option}") 
