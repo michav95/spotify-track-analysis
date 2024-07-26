@@ -71,3 +71,29 @@ fig_3 = px.scatter(
 fig_3.update_layout(xaxis_tickangle=-45)
 fig_3.update_yaxes(range=[0, 30])
 st.plotly_chart(fig_3)
+
+popularity_by_genre = data.groupby('track_genre')['popularity'].mean().reset_index()
+popularity_by_genre.columns = ['track_genre', 'average_popularity']
+
+fig_4 = px.histogram(
+    popularity_by_genre,
+    x='track_genre',
+    y='average_popularity',
+    nbins=30,
+    labels={'average_popularity': 'Average Popularity'},
+    title='Distribution of Average Track Popularity by Genre'
+)
+fig_4.show()
+
+fig_5 = px.scatter(
+    popularity_by_genre,
+    x='track_genre',
+    y='average_popularity',
+    labels={'track_genre': 'Genre', 'average_popularity': 'Average Popularity'},
+    title='Average Popularity of Tracks by Genre'
+)
+fig_5.show()
+
+options = ['popularity_by_genre', 'popular_songs']
+selected_options = st.selectbox('Choose an option:', options)
+st.write(f'You selected: {selected option}')
