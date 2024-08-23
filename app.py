@@ -2,6 +2,20 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 data = pd.read_csv("dataset.csv")
+data['duration_sec'] = data['duration_ms'] / 1000
+
+data['duration_sec'] = pd.to_numeric(data['duration_ms'], errors='coerce') / 1000
+
+#Function to convert seconds to minutes:seconds
+def convert_seconds_to_minutes(seconds):
+    if pd.isna(seconds):
+        return 'N/A'
+    minutes = int(seconds // 60)
+    seconds = int(seconds % 60)
+    return f"{minutes}:{seconds:02d}"
+data['duration_min_sec'] = data['duration_sec'].apply(convert_seconds_to_minutes)
+data = data.drop(columns=['duration_sec'])
+
 st.header('Spotify Track Analysis')
 
 for artist in data['artists']:
