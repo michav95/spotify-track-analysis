@@ -80,7 +80,7 @@ fig_2.update_yaxes(range=[80, 110])
 st.plotly_chart(fig_2)
 
 fig_3 = px.scatter(
-    popular_songs,
+    top_20_songs,
     x='track_name',
     y='popularity',
     labels={'track_name': 'Track Name', 'popularity': 'Popularity of Track'},
