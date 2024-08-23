@@ -36,27 +36,31 @@ fig_1 = px.scatter(
 st.plotly_chart(fig_1)
 
 data_filtered = data[data['popularity'] !=0]
-popular_counts = data_filtered[['popularity', 'track_name']].value_counts().reset_index()
-popular_counts.columns = ['popularity','track_name', 'count']
+popular_counts = data_filtered.sort_values(
+    by=['popularity', 'track_name', 'duration_min_sec', 'danceability', 'energy', 'key', 'tempo'],
+    ascending=False
+).head(20)
+popular_counts = popular_counts.value_counts(subset=['popularity', 'track_name', 'duration_min_sec', 'danceability', 'energy', 'key', 'tempo']).reset_index(name='count')
+top_songs = data_filtered.sort_values(by='popularity', ascending=False).drop_duplicates(subset=['track_name'])
 
-# Sort and take only the top 20 songs
-popular_songs = popular_counts.head(20)
+# Select the top 20 rows
+top_20_songs = top_songs.head(20)
 
-show_popular_songs = st.checkbox('Show only Popular Songs')
-if show_popular_songs:
-    data = data[data['track_name'].isin(popular_songs['track_name'])]
-    st.write("Popular Songs:", popular_songs['track_name'].tolist())
+show_top_20_songs = st.checkbox('Show only Popular Songs')
+if show_top_20_songs:
+    data = data[data['track_name'].isin(top_20_songs['track_name'])]
+    st.write("Popular Songs:", top_20_songs['track_name'].tolist())
 
 # Create the histogram
 fig_2 = px.histogram(
-    popular_songs,
+    top_20_songs,
     x='track_name',
-    y='count',
-    labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
+    y='popularity',
+    labels={'track_name': 'Track Name', 'popularity': 'Popularity of Track'},
     title='Popularity of a Track'
 )
 fig_2.update_layout(xaxis_tickangle=-45)
-fig_2.update_yaxes(range=[0, 50])
+fig_2.update_yaxes(range=[80, 110])
 
 # Display the plot
 st.plotly_chart(fig_2)
@@ -64,12 +68,12 @@ st.plotly_chart(fig_2)
 fig_3 = px.scatter(
     popular_songs,
     x='track_name',
-    y='count',
-    labels={'track_name': 'Track Name', 'count': 'Popularity of Track'},
+    y='popularity',
+    labels={'track_name': 'Track Name', 'popularity': 'Popularity of Track'},
     title='Popularity of a Track'
 )
 fig_3.update_layout(xaxis_tickangle=-45)
-fig_3.update_yaxes(range=[0, 30])
+fig_3.update_yaxes(range=[80, 150])
 st.plotly_chart(fig_3)
 
 popularity_by_genre = data.groupby('track_genre')['popularity'].mean().reset_index()
